@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
     def test_something(self):
         sen1 = "מה נשמע ?"
         arabic = translate_sentence(sen1)
-        self.assertEqual(arabic, "אֵיש אִנְסַמַע")
+        self.assertEqual(arabic, "אֵיש (אִנְסַמַע)")
 
     def test_verbs(self):
         sen1 = "קראתי"
@@ -34,13 +34,31 @@ class MyTestCase(unittest.TestCase):
         sen1 = 'לא ראיתי אותך קודם, למה אתה בוכה?'
         arabic = translate_sentence(sen1)
         print(arabic)
-        self.assertEqual(arabic, " מַא (שַאף) אִיַאכִּי סַאבֵּק לֵיש אִנְתֵ (בַּכַּא)")
+        self.assertEqual(arabic, "מַא (שַאף) אִיַאכִּי סַאבֵּק לֵיש אִנְתֵ (בַּכַּא)")
 
     def test_long_sen2(self):
         sen1 = 'הם לא רוצים לפתוח את החלונות!'
         arabic = translate_sentence(sen1)
         print(arabic)
         self.assertEqual(arabic, "הֻםֵ מַא (כַּאן בִּדוֹ) (פַתְח)  שַבַּאבִּיכּ")
+
+    def test_single_verb(self):
+        sen1 = 'אוהב'
+        arabic = translate_sentence(sen1)
+        print(arabic)
+        self.assertEqual(arabic, "(חַבּ)")
+
+    def test_mixed_hebrew(self):
+        sen1 = "קוראים לי אפרים קישון"
+        arabic = translate_sentence(sen1)
+        print(arabic)
+        self.assertEqual(arabic, "(קִרִי) אִלַא **אפרים** **קישון**")
+
+    def test_close_transaltion(self):
+        sen1 = "לפתוח"
+        arabic = translate_sentence(sen1)
+        print(arabic)
+        self.assertEqual(arabic, "~לַאפְתַה *פַתְח*")
 
 
 if __name__ == '__main__':
